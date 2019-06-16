@@ -1,5 +1,12 @@
-from termcolor import colored, cprint
-import math, sys, re
+import math, sys, re, os
+
+if os.name == 'nt':
+	def colored(*args, **kwargs):
+		return args[0]
+	def cprint(*args, **kwargs):
+		print(args[0])
+else:
+	from termcolor import colored, cprint
 
 def calculate(t, n):
 	for i in range(t, 1, -1):
@@ -8,7 +15,7 @@ def calculate(t, n):
 				cprint("Divide both numbers with", "cyan")
 				cprint(str(i), "magenta", attrs=["bold"])
 				broek = str(int(t/i))+"/"+str(int(n/i))
-				cprint(broek, "green", attrs=["underline"])
+				print("Result: "+colored(broek, "green", attrs=["underline"]))
 				sys.exit(0)
 	
 	cprint("\nYour fraction can't be minimized!", "red", attrs=["bold"])
