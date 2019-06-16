@@ -9,8 +9,6 @@ And the only requirements you need are in `requirements.txt`
 
 Install them with a terminal:
 
-```bash
-
+```sh
 pip install -r requirements.txt
-
 ```
