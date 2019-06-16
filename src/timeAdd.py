@@ -1,5 +1,12 @@
-from termcolor import colored, cprint
-import sys, re
+import sys, re, os
+
+if os.name == 'nt':
+	def colored(*args, **kwargs):
+		return args[0]
+	def cprint(*args, **kwargs):
+		print(args[0])
+else:
+	from termcolor import colored, cprint
 
 def wrong_format(info=""):
 	cprint("\nWrong format!", "red", attrs=["bold"])
@@ -8,7 +15,8 @@ def wrong_format(info=""):
 	sys.exit(1)
 
 if __name__ == "__main__":
-	inputstr = colored(f"First timestamp", "magenta")+colored("(hh:mm)", "blue")+colored("> ", "green")
+	cprint("Work in progress", color="red")
+	inputstr = colored(f"First timestamp ", "magenta")+colored("(hh:mm)", "blue")+colored("> ", "green")
 
 	uip = input(inputstr)
 	match = re.match(r"([0-9]{1,2}):([0-9]{1,2})$", uip)
